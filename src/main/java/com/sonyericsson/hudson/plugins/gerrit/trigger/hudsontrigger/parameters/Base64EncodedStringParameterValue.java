@@ -23,7 +23,6 @@
  */
 package com.sonyericsson.hudson.plugins.gerrit.trigger.hudsontrigger.parameters;
 
-import org.apache.commons.lang.StringUtils;
 import org.kohsuke.stapler.DataBoundConstructor;
 
 import hudson.model.StringParameterValue;
@@ -67,7 +66,7 @@ public class Base64EncodedStringParameterValue extends StringParameterValue {
     @Override
     public String getShortDescription() {
         return name + "=<Base64 Encoded String: "
-                + StringUtils.abbreviate(value, ABBREVIATE_LENGTH)
+                + (value.length() > ABBREVIATE_LENGTH ? value.substring(0, ABBREVIATE_LENGTH - 3) + "..." : value)
                 + ">";
     }
 }
