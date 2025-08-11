@@ -54,7 +54,9 @@
     </developers>
 
     <properties>
-        <jenkins.version>2.426.3</jenkins.version>
+        <!-- https://www.jenkins.io/doc/developer/plugin-development/choosing-jenkins-baseline/ -->
+        <jenkins.baseline>2.426</jenkins.baseline>
+        <jenkins.version>${jenkins.baseline}.3</jenkins.version>
         <revision>2.42.1</revision>
         <changelist>-SNAPSHOT</changelist>
         <gitHubRepo>jenkinsci/${project.artifactId}-plugin</gitHubRepo>
@@ -220,13 +222,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.tomakehurst</groupId>
-            <artifactId>wiremock-jre8-standalone</artifactId>
-            <!--
-            wiremock-jre8 introduces many dependencies that interferes with jth and core functionality
-            during testing, the standalone jar shades all those so it doesn't break other tests.
-            -->
-            <version>2.35.1</version>
+            <groupId>org.wiremock</groupId>
+            <artifactId>wiremock-standalone</artifactId>
+            <version>3.12.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -275,7 +273,7 @@
         <dependencies>
             <dependency>
                 <groupId>io.jenkins.tools.bom</groupId>
-                <artifactId>bom-2.426.x</artifactId>
+                <artifactId>bom-${jenkins.baseline}.x</artifactId>
                 <version>2815.vf5d6f093b_23e</version>
                 <type>pom</type>
                 <scope>import</scope>
